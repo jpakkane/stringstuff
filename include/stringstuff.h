@@ -29,12 +29,12 @@ bool startswith(T1 messagestart, const T1 messageend, T2 prefixstart, const T2 p
     return prefixstart == prefixend;
 }
 
-template<class T>
-bool startswith(const T& message, const T& prefix) {
+template<class T1, class T2>
+bool startswith(const T1& message, const T2& prefix) {
     return startswith(message.cbegin(), message.cend(), prefix.cbegin(), prefix.cend());
 }
 
-template<class T>
-bool endswith(const T& message, const T& suffix) {
+template<class T1, class T2>
+bool endswith(const T1& message, const T2& suffix) {
     return startswith(message.crbegin(), message.crend(), suffix.crbegin(), suffix.crend());
 }

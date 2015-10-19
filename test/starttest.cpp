@@ -24,8 +24,8 @@ const std::string prefix1("this");
 const std::string prefix2("this is");
 const std::string suffix1("message");
 const std::string suffix2("some message");
-const std::string notprefix("no");
-const std::string notsuffix("nope");
+const std::string notprefix("iht");
+const std::string notsuffix("egassem");
 const std::string empty("");
 
 TEST(prefixtest, basic_form) {
@@ -61,6 +61,8 @@ TEST(prefixtest, vector) {
     std::vector<char> ending{'d', 'e'};
     std::vector<char> fail{'d'};
     std::vector<char> nothing;
+    std::string strprefix{"abc"};
+    std::string strnotprefix{"cba"};
 
     ASSERT_TRUE(startswith(fulltext, little));
     ASSERT_FALSE(startswith(little, fulltext));
@@ -71,4 +73,10 @@ TEST(prefixtest, vector) {
     ASSERT_FALSE(endswith(ending, fulltext));
     ASSERT_FALSE(endswith(fulltext, fail));
     ASSERT_TRUE(endswith(fulltext, nothing));
+
+    ASSERT_TRUE(endswith(nothing, nothing));
+
+    // Test mixed.
+    ASSERT_TRUE(startswith(fulltext, strprefix));
+    ASSERT_FALSE(startswith(fulltext, strnotprefix));
 }
