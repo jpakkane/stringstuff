@@ -1,5 +1,6 @@
+#include<gtest/gtest.h>
 #include<stringstuff.h>
 
-int main(int argc, char **argv) {
-    return 0;
+TEST(basic_test, true_works) {
+    ASSERT_TRUE(true);
 }
