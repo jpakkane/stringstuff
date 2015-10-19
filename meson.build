@@ -1,3 +1,4 @@
 project('stringstuff', 'cpp', version : '0.1.0')
 
-executable('foo', 'main.cpp')
+inc = include_directories('include')
+subdir('test')
