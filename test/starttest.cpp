@@ -54,3 +54,21 @@ TEST(suffixtest, basic) {
     ASSERT_FALSE(endswith(suffix1, message));
     ASSERT_TRUE(endswith(empty, empty));
 }
+
+TEST(prefixtest, vector) {
+    std::vector<char> fulltext{'a', 'b', 'c', 'd', 'e'};
+    std::vector<char> little{'a', 'b'};
+    std::vector<char> ending{'d', 'e'};
+    std::vector<char> fail{'d'};
+    std::vector<char> nothing;
+
+    ASSERT_TRUE(startswith(fulltext, little));
+    ASSERT_FALSE(startswith(little, fulltext));
+    ASSERT_FALSE(startswith(fulltext, fail));
+    ASSERT_TRUE(startswith(fulltext, nothing));
+
+    ASSERT_TRUE(endswith(fulltext, ending));
+    ASSERT_FALSE(endswith(ending, fulltext));
+    ASSERT_FALSE(endswith(fulltext, fail));
+    ASSERT_TRUE(endswith(fulltext, nothing));
+}

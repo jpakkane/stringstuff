@@ -18,7 +18,7 @@
 #pragma once
 
 template<class T1, class T2>
-bool startswith(T1 messagestart, T1 messageend, T2 prefixstart, T2 prefixend) {
+bool startswith(T1 messagestart, const T1 messageend, T2 prefixstart, const T2 prefixend) {
     while(messagestart != messageend && prefixstart != prefixend) {
         if(*messagestart != *prefixstart) {
             return false;
@@ -31,10 +31,10 @@ bool startswith(T1 messagestart, T1 messageend, T2 prefixstart, T2 prefixend) {
 
 template<class T>
 bool startswith(const T& message, const T& prefix) {
-    return startswith(message.begin(), message.end(), prefix.begin(), prefix.end());
+    return startswith(message.cbegin(), message.cend(), prefix.cbegin(), prefix.cend());
 }
 
 template<class T>
 bool endswith(const T& message, const T& suffix) {
-    return startswith(message.rbegin(), message.rend(), suffix.rbegin(), suffix.rend());
+    return startswith(message.crbegin(), message.crend(), suffix.crbegin(), suffix.crend());
 }
