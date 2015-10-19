@@ -28,3 +28,13 @@ bool startswith(T1 messagestart, T1 messageend, T2 prefixstart, T2 prefixend) {
     }
     return prefixstart == prefixend;
 }
+
+template<class T>
+bool startswith(const T& message, const T& prefix) {
+    return startswith(message.begin(), message.end(), prefix.begin(), prefix.end());
+}
+
+template<class T>
+bool endswith(const T& message, const T& suffix) {
+    return startswith(message.rbegin(), message.rend(), suffix.rbegin(), suffix.rend());
+}

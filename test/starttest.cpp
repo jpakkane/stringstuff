@@ -22,7 +22,10 @@
 const std::string message("this is some message");
 const std::string prefix1("this");
 const std::string prefix2("this is");
+const std::string suffix1("message");
+const std::string suffix2("some message");
 const std::string notprefix("no");
+const std::string notsuffix("nope");
 const std::string empty("");
 
 TEST(prefixtest, basic_form) {
@@ -32,4 +35,22 @@ TEST(prefixtest, basic_form) {
                            prefix2.begin(), prefix2.end()));
     ASSERT_FALSE(startswith(message.begin(), message.end(),
                             notprefix.begin(), notprefix.end()));
+}
+
+TEST(prefixtest, string_adaptor) {
+    ASSERT_TRUE(startswith(message, prefix1));
+    ASSERT_TRUE(startswith(message, prefix2));
+    ASSERT_TRUE(startswith(message, empty));
+    ASSERT_FALSE(startswith(message, notprefix));
+    ASSERT_FALSE(startswith(prefix1, message));
+    ASSERT_TRUE(startswith(empty, empty));
+}
+
+TEST(suffixtest, basic) {
+    ASSERT_TRUE(endswith(message, suffix1));
+    ASSERT_TRUE(endswith(message, suffix2));
+    ASSERT_TRUE(endswith(message, empty));
+    ASSERT_FALSE(endswith(message, notsuffix));
+    ASSERT_FALSE(endswith(suffix1, message));
+    ASSERT_TRUE(endswith(empty, empty));
 }
