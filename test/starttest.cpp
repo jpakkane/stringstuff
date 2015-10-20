@@ -80,3 +80,17 @@ TEST(prefixtest, vector) {
     ASSERT_TRUE(startswith(fulltext, strprefix));
     ASSERT_FALSE(startswith(fulltext, strnotprefix));
 }
+
+TEST(splitter, basic) {
+    std::string original{"this is a string"};
+    std::string original2{" this\nis        a \t string\r"};
+    std::vector<std::string> goal{"this", "is", "a", "string"};
+    std::vector<std::string> parsed1;
+    std::vector<std::string> parsed2;
+
+    split(original.cbegin(), original.cend(), std::back_inserter(parsed1));
+    ASSERT_EQ(goal, parsed1);
+
+    split(original2, std::back_inserter(parsed2));
+    ASSERT_EQ(goal, parsed2);
+}
